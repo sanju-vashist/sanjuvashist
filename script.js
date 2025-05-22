@@ -243,13 +243,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // Main JavaScript code
 const queryKnowledgeBase = async (userQuery, knowledgeBase) => {
     try {
-        if (!config || !config.API_KEY) {
-            throw new Error('API key not configured');
-        }
+        const API_KEY = 'AIzaSyDQiYbOiipZKKWz5Ar37u55FcjtatEWotA'; 
+        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
-        const API_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
-
-        const response = await fetch(`${API_ENDPOINT}?key=${config.API_KEY}`, {
+        const response = await fetch(`${API_URL}?key=${API_KEY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -266,7 +263,7 @@ const queryKnowledgeBase = async (userQuery, knowledgeBase) => {
         });
 
         if (!response.ok) {
-            throw new Error('API request failed');
+            throw new Error(`API request failed with status: ${response.status}`);
         }
 
         const data = await response.json();
@@ -305,14 +302,12 @@ class VoiceAssistant {
             "1. Saanjavni: A comprehensive medical information app with biometric registration, family medical history, emergency access, and monetization features. Created using Flutter and Firebase. " +
             "2. Lafda: An anonymous chatting app that allows users to interact in group chats and share thoughts freely. " +
             "2. Dowry Calculator: A fun app that calculates a hypothetical dowry amount based on user qualifications. " +
-            "4. The Normal app: A simple app that steals your data and sends it to server without even knowing and its aim is to educate how easy is to steal your data and how chiness app may do it.created using react native and supbase "
-        "\n\n" +
+            "4. The Normal app: A simple app that steals your data and sends it to server without even knowing and its aim is to educate how easy is to steal your data and how chiness app may do it.created using react native and supbase " +
+            "\n\n" +
             "Achievements: " +
-
             "\n\n" +
             "I am highly motivated to explore diverse fields such as app development, data science, and artificial intelligence. " +
-            "I enjoy coding, experimenting with new technologies, and bringing creative ideas to life."
-
+            "I enjoy coding, experimenting with new technologies, and bringing creative ideas to life.";
 
         this.initializeSpeechRecognition();
         this.setupEventListeners();
