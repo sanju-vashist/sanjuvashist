@@ -34,7 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function redirectToProjects() {
+      window.location.href = "all-project.html"; 
+    }
 
+    
 // Initialize GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
